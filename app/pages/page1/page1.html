@@ -9,13 +9,34 @@
 
 
 <ion-content padding class="page1">
+    Start: {{game.start}}<br/>
+    Current: {{game.current}}
 
-  <h3>Ionic Menu Starter</h3>
+    <ion-row>
+        <ion-col>
+            <button block 
+                (click)="gameService.subtract(game)"
+                [attr.disabled]="gameService?.subtractable(game) ? null : true">
+                -1
+            </button>
+        </ion-col>
+        <ion-col>
+            <button block 
+                (click)="gameService.divideByThree(game)"
+                [attr.disabled]="gameService?.divisibleByThree(game) ? null : true">
+                &divide;3
+            </button>
+        </ion-col>
+        <ion-col>
+            <button block 
+                (click)="gameService.add(game)">
+                +1
+            </button>
+        </ion-col>
+    </ion-row>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button secondary menuToggle>Toggle Menu</button>
+    <div *ngIf="gameService?.won(game)" class="win">
+        You've won<ion-icon name="alert"></ion-icon>
+    </div>
 
 </ion-content>

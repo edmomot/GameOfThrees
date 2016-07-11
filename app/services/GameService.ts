@@ -7,17 +7,31 @@ export class GameService {
         
     }
 
-    start(n: number): IGame {
-        return {start: n};
+    public start(n: number): IGame {
+        return {start: n, current: n};
     }
 
-    divisibleByThree(): boolean {
-        return true;
+    public divisibleByThree(g: IGame): boolean {
+        return g.current >=3 && (g.current % 3) == 0;
     }
 
-    subtractable(): boolean {
-        return true;
+    public subtractable(g: IGame): boolean {
+        return g.current > 1;
     }
 
+    public won(g: IGame): boolean {
+        return g.current == 1;
+    }
 
+    public divideByThree(g: IGame): void {
+        g.current /= 3;
+    }
+
+    public subtract(g: IGame): void {
+        g.current--;
+    }
+
+    public add(g: IGame): void {
+        g.current++;
+    }
 }

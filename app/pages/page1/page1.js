@@ -10,15 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
+var GameService_1 = require('../../services/GameService');
 var Page1 = (function () {
-    function Page1(navController) {
+    function Page1(navController, gameService) {
         this.navController = navController;
+        this.gameService = gameService;
+        this.game = gameService.start(150);
     }
     Page1 = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/page1/page1.html'
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController])
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, GameService_1.GameService])
     ], Page1);
     return Page1;
 }());

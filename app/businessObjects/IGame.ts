@@ -1,5 +1,5 @@
 ﻿export interface IGame
 {
     start: number;
-    current?: number;
+    current: number;
 }
