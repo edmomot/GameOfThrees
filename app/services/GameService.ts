@@ -1,37 +1,55 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, EventEmitter } from '@angular/core';
 import { IGame } from '../businessObjects/IGame';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class GameService {
-    constructor() {
-        
+
+    currentEmitter: EventEmitter<number> = new EventEmitter();
+    divisibilityEmitter: EventEmitter<boolean> = new EventEmitter();
+    subtractableEmitter: EventEmitter<boolean> = new EventEmitter();
+
+    private g : IGame;
+    
+    init(n: number) {
+        this.g = <IGame>{ start: n, current: n }
+        this.updateEmitters();
+    }
+    
+    public won(): boolean {
+        return this.g && this.g.current == 1;
     }
 
-    public start(n: number): IGame {
-        return {start: n, current: n};
+    public divideByThree(): void {
+        if (this.divisible()) {
+            this.g.current /= 3;
+            this.updateEmitters();
+        }
     }
 
-    public divisibleByThree(g: IGame): boolean {
-        return g.current >=3 && (g.current % 3) == 0;
+    public subtract(): void {
+        if (this.subtractable()) {
+            this.g.current--;
+            this.updateEmitters();
+        }
     }
 
-    public subtractable(g: IGame): boolean {
-        return g.current > 1;
+    public add(): void {
+        this.g.current++;
+        this.updateEmitters();
     }
 
-    public won(g: IGame): boolean {
-        return g.current == 1;
+    private updateEmitters(): void {
+        this.currentEmitter.next(this.g.current);
+        this.divisibilityEmitter.next(this.divisible());
+        this.subtractableEmitter.next(this.subtractable());
     }
 
-    public divideByThree(g: IGame): void {
-        g.current /= 3;
+    private divisible() : boolean {
+        return this.g && this.g.current >= 3 && ((this.g.current % 3) == 0);
     }
 
-    public subtract(g: IGame): void {
-        g.current--;
-    }
-
-    public add(g: IGame): void {
-        g.current++;
+    private subtractable(): boolean {
+        return this.g && this.g.current > 1;
     }
 }

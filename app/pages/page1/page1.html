@@ -9,21 +9,21 @@
 
 
 <ion-content padding class="page1">
-    Start: {{game.start}}<br/>
-    Current: {{game.current}}
+    Start: {{game?.start}}<br/>
+    Current: {{current}}
 
     <ion-row>
         <ion-col>
             <button block 
                 (click)="gameService.subtract(game)"
-                [attr.disabled]="gameService?.subtractable(game) ? null : true">
+                [attr.disabled]="subtractable ? null : true">
                 -1
             </button>
         </ion-col>
         <ion-col>
             <button block 
                 (click)="gameService.divideByThree(game)"
-                [attr.disabled]="gameService?.divisibleByThree(game) ? null : true">
+                [attr.disabled]="divisible ? null : true">
                 &divide;3
             </button>
         </ion-col>
@@ -35,7 +35,7 @@
         </ion-col>
     </ion-row>
 
-    <div *ngIf="gameService?.won(game)" class="win">
+    <div *ngIf="gameService.won(game)" class="win">
         You've won<ion-icon name="alert"></ion-icon>
     </div>
 
