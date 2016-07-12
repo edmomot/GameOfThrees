@@ -8,16 +8,13 @@ export class GameService {
     currentEmitter: EventEmitter<number> = new EventEmitter();
     divisibilityEmitter: EventEmitter<boolean> = new EventEmitter();
     subtractableEmitter: EventEmitter<boolean> = new EventEmitter();
+    gameWonEmitter: EventEmitter<boolean> = new EventEmitter();
 
     private g : IGame;
     
     init(n: number) {
         this.g = <IGame>{ start: n, current: n }
         this.updateEmitters();
-    }
-    
-    public won(): boolean {
-        return this.g && this.g.current == 1;
     }
 
     public divideByThree(): void {
@@ -43,6 +40,7 @@ export class GameService {
         this.currentEmitter.next(this.g.current);
         this.divisibilityEmitter.next(this.divisible());
         this.subtractableEmitter.next(this.subtractable());
+        this.gameWonEmitter.next(this.won());
     }
 
     private divisible() : boolean {
@@ -51,5 +49,9 @@ export class GameService {
 
     private subtractable(): boolean {
         return this.g && this.g.current > 1;
+    }
+
+    private won() : boolean {
+        return this.g && this.g.current == 1;
     }
 }

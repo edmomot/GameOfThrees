@@ -1,16 +1,18 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { GameService } from '../services/GameService'
-import { IGame } from "../businessObjects/IGame";
+import { IGame } from '../businessObjects/IGame'
 
 @Component({
     selector: 'game',
     templateUrl: 'build/components/GameComponent.html'
 })
 export class GameComponent {
-    divisible: boolean;
-    subtractable: boolean;
-    current: number;
-    start: number;
+    private divisible: boolean;
+    private subtractable: boolean;
+    private current: number;
+
+    @Input() start: number;
+    @Output() gameWon: EventEmitter<IGame> = new EventEmitter();
 
     constructor(
         private gameService: GameService) {
@@ -33,6 +35,10 @@ export class GameComponent {
             this.current = data
         );
 
-        this.gameService.init(200);
+        this.gameService.gameWonEmitter.subscribe((data) =>
+            this.gameWon.next(data)
+        );
+
+        this.gameService.init(this.start);
     }
 }

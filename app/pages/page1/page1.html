@@ -7,7 +7,17 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding class="page1">
-    <game></game>
+    <game-initializer *ngIf="!initialized && !gameWon"
+                      (gameStartNumber)="startGame($event)"></game-initializer>
+
+    <game *ngIf="initialized && !gameWon"
+          [start]="gameStartNumber" 
+          (gameWon)="gameWonEvent($event)"></game>
+
+    <game-won *ngIf="gameWon"
+              [moves]="555"
+              (startNew)="startNewGame()"></game-won>
 </ion-content>
 
