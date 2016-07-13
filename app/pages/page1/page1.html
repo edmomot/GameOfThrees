@@ -9,15 +9,24 @@
 
 
 <ion-content padding class="page1">
-    <game-initializer *ngIf="!initialized && !gameWon"
-                      (gameStartNumber)="startGame($event)"></game-initializer>
+    <!--<game-initializer *ngIf="!initialized && !gameWon"
+                          (gameStartNumber)="startGame($event)"></game-initializer>
 
     <game *ngIf="initialized && !gameWon"
-          [start]="gameStartNumber" 
+          [start]="gameStartNumber"
           (gameWon)="gameWonEvent($event)"></game>
 
     <game-won *ngIf="gameWon"
               [moves]="555"
-              (startNew)="startNewGame()"></game-won>
+              (startNew)="startNewGame()"></game-won>-->
+
+
+    <ion-item>
+        <ion-input type="text" #number placeholder="Number to start"></ion-input>
+    </ion-item>
+
+    <button (click)="startGame(number.value)">Start Game</button>
+
+    TODO: validate number to start with GameService
 </ion-content>
 

@@ -8,16 +8,30 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+    Start: {{start}}<br />
+    Current: {{current}}
+
+    <ion-row>
+        <ion-col>
+            <button block
+                    (click)="gameService.subtract(game)"
+                    [attr.disabled]="subtractable ? null : true">
+                -1
+            </button>
+        </ion-col>
+        <ion-col>
+            <button block
+                    (click)="gameService.divideByThree(game)"
+                    [attr.disabled]="divisible ? null : true">
+                &divide;3
+            </button>
+        </ion-col>
+        <ion-col>
+            <button block
+                    (click)="gameService.add(game)">
+                +1
+            </button>
+        </ion-col>
+    </ion-row>
+
 </ion-content>

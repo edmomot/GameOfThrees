@@ -8,7 +8,5 @@ export class GameWonComponent {
     @Input() moves: number;
     @Output() startNew : EventEmitter<boolean> = new EventEmitter();
 
-    startNewGame(): void {
-        this.startNew.next(true);
-    }
+
 }
