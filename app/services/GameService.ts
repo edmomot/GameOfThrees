@@ -10,28 +10,32 @@ export class GameService {
     subtractableEmitter: EventEmitter<boolean> = new EventEmitter();
     gameWonEmitter: EventEmitter<boolean> = new EventEmitter();
 
-    private g : IGame;
+    private g: IGame;
+
+    validStartNumber(n: number): boolean {
+        return n > 1;
+    }
     
     init(n: number) {
         this.g = <IGame>{ start: n, current: n }
         this.updateEmitters();
     }
 
-    public divideByThree(): void {
+    divideByThree(): void {
         if (this.divisible()) {
             this.g.current /= 3;
             this.updateEmitters();
         }
     }
 
-    public subtract(): void {
+    subtract(): void {
         if (this.subtractable()) {
             this.g.current--;
             this.updateEmitters();
         }
     }
 
-    public add(): void {
+    add(): void {
         this.g.current++;
         this.updateEmitters();
     }
