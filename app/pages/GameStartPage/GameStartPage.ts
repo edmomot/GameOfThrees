@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { GameService } from '../../services/GameService'
-import { Page2 } from '../page2/page2';
+import { GamePlayPage } from '../GamePlayPage/GamePlayPage';
 
 @Component({
-    templateUrl: 'build/pages/page1/page1.html',
+    templateUrl: 'build/pages/GameStartPage/GameStartPage.html',
 })
-export class Page1 {
+export class GameStartPage {
     initialized: boolean = false;
     gameWon: boolean = false;
     gameStartNumber: number;
@@ -16,7 +16,7 @@ export class Page1 {
     }
 
     startGame(n: number): void {
-        this.nav.setRoot(Page2, { number: n });
+        this.nav.setRoot(GamePlayPage, { number: n });
     }
     
 }

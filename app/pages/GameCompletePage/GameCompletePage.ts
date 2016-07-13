@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Page1 } from '../page1/page1';
+import { GameStartPage } from '../GameStartPage/GameStartPage';
 
 /*
   Generated class for the Page3Page page.
@@ -9,18 +9,21 @@ import { Page1 } from '../page1/page1';
   Ionic pages and navigation.
 */
 @Component({
-  templateUrl: 'build/pages/page3/page3.html',
+    templateUrl: 'build/pages/GameCompletePage/GameCompletePage.html',
 })
-export class Page3 {
+export class GameCompletePage {
     private moves: number;
 
     constructor(
             private nav: NavController,
             private navParams: NavParams) {
-        this.moves = navParams.get("moves");
+    }
+
+    ngOnInit(): void {
+        this.moves = this.navParams.get("moves");
     }
 
     startNewGame(): void {
-        this.nav.setRoot(Page1);
+        this.nav.setRoot(GameStartPage);
     }
 }

@@ -2,12 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { GameService } from '../../services/GameService';
-import { Page3 } from '../page3/page3';
+import { GameCompletePage } from '../GameCompletePage/GameCompletePage';
 
 @Component({
-  templateUrl: 'build/pages/page2/page2.html'
+  templateUrl: 'build/pages/GamePlayPage/GamePlayPage.html'
 })
-export class Page2 {
+export class GamePlayPage {
     private divisible: boolean;
     private subtractable: boolean;
     private current: number;
@@ -36,7 +36,7 @@ export class Page2 {
 
         this.gameService.gameWonEmitter.subscribe((data) => {
                 if (data) {
-                    this.nav.setRoot(Page3, { moves: 999 });
+                    this.nav.setRoot(GameCompletePage, { moves: 999 });
                 }
             }
         );
