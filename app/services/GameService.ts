@@ -24,6 +24,7 @@ export class GameService {
     divideByThree(): void {
         if (this.divisible()) {
             this.g.current /= 3;
+            this.g.moves++;
             this.updateEmitters();
         }
     }
@@ -31,12 +32,14 @@ export class GameService {
     subtract(): void {
         if (this.subtractable()) {
             this.g.current--;
+            this.g.moves++;
             this.updateEmitters();
         }
     }
 
     add(): void {
         this.g.current++;
+        this.g.moves++;
         this.updateEmitters();
     }
 

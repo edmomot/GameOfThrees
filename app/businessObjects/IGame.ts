@@ -2,4 +2,5 @@
 {
     start: number;
     current: number;
+    moves: number;
 }
