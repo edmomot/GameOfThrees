@@ -1,10 +1,10 @@
 # Specifies files to intentionally ignore when using Git
 # http://git-scm.com/docs/gitignore
 
-node_modules/
-www/build/
-platforms/
-plugins/
+Game/node_modules/
+Game/www/build/
+Game/platforms/
+Game/plugins/
 *.swp
 .DS_Store
 Thumbs.db

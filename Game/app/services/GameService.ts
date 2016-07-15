@@ -1,5 +1,5 @@
 ﻿import { Injectable, EventEmitter } from '@angular/core';
-import { IGame } from '../businessObjects/IGame';
+import { IGame } from '../entities/IGame';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
