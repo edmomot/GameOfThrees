@@ -1,10 +1,13 @@
-﻿import { IGameValidator } from './contracts/IGameValidator';
-import { IGameState } from './contracts/IGameState';
+﻿import { Injectable } from '@angular/core';
 
+import { GameState } from './GameState';
+import { GameValidator } from './GameValidator';
+
+@Injectable()
 export class GameActions {
-    constructor(private validator: IGameValidator) {}
+    constructor(private validator: GameValidator) {}
 
-    divideByThree(game: IGameState): void {
+    divideByThree(game: GameState): void {
         if (game && this.validator.isDivisible(game)) {
             game.current %= 3;
             game.moves++;
@@ -12,7 +15,7 @@ export class GameActions {
         }
     }
 
-    subtract(game: IGameState): void {
+    subtract(game: GameState): void {
         if (game && this.validator.isSubtractable(game)) {
             game.current--;
             game.moves++;
@@ -20,7 +23,7 @@ export class GameActions {
         }
     }
 
-    add(game: IGameState): void {
+    add(game: GameState): void {
         if (game) {
             game.current++;
             game.moves++;
@@ -28,13 +31,11 @@ export class GameActions {
         }
     }
 
-    private setGameWonStatus(game: IGameState) {
-        if (this.isGameWon(game)) {
-            game.hasWon = true;
-        }
+    private setGameWonStatus(game: GameState) {
+        game.hasWon = this.isGameWon(game);
     }
 
-    private isGameWon(game: IGameState): boolean {
+    private isGameWon(game: GameState): boolean {
         return game
             && game.current == 1;
     }

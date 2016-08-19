@@ -41,6 +41,6 @@ export class GamePlayPage {
             }
         );
 
-        this.gameService.init(this.start || 589);
+        this.gameService.startNewGame(this.start || 589);
     }
 }

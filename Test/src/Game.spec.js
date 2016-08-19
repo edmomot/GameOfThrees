@@ -1,27 +1,23 @@
-System.register([], function(exports_1, context_1) {
+System.register(['../../Game/app/logic/GameState'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
+    var GameState_1;
     return {
-        setters:[],
+        setters:[
+            function (GameState_1_1) {
+                GameState_1 = GameState_1_1;
+            }],
         execute: function() {
-            describe('Game', function () {
-                it('can set and read start', function () {
-                    var game = { start: 3, current: 3, moves: 0 };
-                    expect(game.start).toEqual(3);
-                    game.start += 17;
-                    expect(game.start).toEqual(20);
+            describe('GameState', function () {
+                it('initializes start number correctly', function () {
+                    var game = new GameState_1.GameState();
+                    game.initialize(15);
+                    expect(game.start).toEqual(15);
                 });
-                it('can set and read current', function () {
-                    var game = { start: 3, current: 3, moves: 0 };
-                    expect(game.current).toEqual(3);
-                    game.current += 17;
-                    expect(game.current).toEqual(20);
-                });
-                it('can set and read moves', function () {
-                    var game = { start: 3, current: 3, moves: 0 };
-                    expect(game.moves).toEqual(0);
-                    game.moves += 17;
-                    expect(game.moves).toEqual(17);
+                it('initializes current number correctly', function () {
+                    var game = new GameState_1.GameState();
+                    game.initialize(15);
+                    expect(game.current).toEqual(15);
                 });
             });
         }

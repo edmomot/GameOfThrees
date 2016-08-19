@@ -1,64 +1,52 @@
-﻿import { Injectable, EventEmitter } from '@angular/core';
-import { IGame } from '../entities/IGame';
+﻿import { Component, Injectable, Inject, EventEmitter, OpaqueToken, provide } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-@Injectable()
-export class GameService {
+import { GameValidator } from '../logic/GameValidator';
+import { GameActions } from '../logic/GameActions';
+import { GameState } from '../logic/GameState';
 
+@Component({
+    providers: [GameState]
+})
+export class GameService {
     currentEmitter: EventEmitter<number> = new EventEmitter();
     divisibilityEmitter: EventEmitter<boolean> = new EventEmitter();
     subtractableEmitter: EventEmitter<boolean> = new EventEmitter();
     gameWonEmitter: EventEmitter<boolean> = new EventEmitter();
 
-    private g: IGame;
 
-    validStartNumber(n: number): boolean {
-        return n > 1;
+    constructor(
+            private actions: GameActions,
+            private validator: GameValidator,
+            private state: GameState) {
     }
-    
-    init(n: number) {
-        this.g = <IGame>{ start: n, current: n }
+
+    startNewGame(n: number): void {
+        this.state.initialize(n);
         this.updateEmitters();
     }
 
     divideByThree(): void {
-        if (this.divisible()) {
-            this.g.current /= 3;
-            this.g.moves++;
-            this.updateEmitters();
-        }
+        this.actions.divideByThree(this.state);
+        this.updateEmitters();
     }
 
     subtract(): void {
-        if (this.subtractable()) {
-            this.g.current--;
-            this.g.moves++;
-            this.updateEmitters();
-        }
+        this.actions.subtract(this.state);
+        this.updateEmitters();
     }
 
     add(): void {
-        this.g.current++;
-        this.g.moves++;
+        this.actions.add(this.state);
         this.updateEmitters();
     }
 
     private updateEmitters(): void {
-        this.currentEmitter.next(this.g.current);
-        this.divisibilityEmitter.next(this.divisible());
-        this.subtractableEmitter.next(this.subtractable());
-        this.gameWonEmitter.next(this.won());
+        this.currentEmitter.next(this.state.current);
+        this.gameWonEmitter.next(this.state.hasWon);
+
+        this.divisibilityEmitter.next(this.validator.isDivisible(this.state));
+        this.subtractableEmitter.next(this.validator.isSubtractable(this.state));
     }
 
-    private divisible() : boolean {
-        return this.g && this.g.current >= 3 && ((this.g.current % 3) == 0);
-    }
-
-    private subtractable(): boolean {
-        return this.g && this.g.current > 1;
-    }
-
-    private won() : boolean {
-        return this.g && this.g.current == 1;
-    }
 }

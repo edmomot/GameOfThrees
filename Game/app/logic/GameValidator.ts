@@ -1,18 +1,20 @@
-﻿import { IGameValidator } from './contracts/IGameValidator';
-import { IGameState } from './contracts/IGameState';
+﻿import { Injectable } from '@angular/core';
 
-export class GameValidator implements IGameValidator {
+import { GameState } from './GameState';
+
+@Injectable()
+export class GameValidator {
     isValidStartNumber(n: number): boolean {
         return n > 1;
     }
 
-    isDivisible(game: IGameState) {
+    isDivisible(game: GameState) {
         return game
             && game.current >= 3
-            && ((game.current % 3) == 0);
+            && ((game.current % 3) === 0);
     }
 
-    isSubtractable(game: IGameState) {
+    isSubtractable(game: GameState) {
         return game
             && game.current > 1;
     }
