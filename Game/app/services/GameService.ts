@@ -6,7 +6,7 @@ import { GameActions } from '../logic/GameActions';
 import { GameState } from '../logic/GameState';
 
 @Component({
-    providers: [GameState]
+    providers: [GameState, GameActions, GameValidator]
 })
 export class GameService {
     currentEmitter: EventEmitter<number> = new EventEmitter();

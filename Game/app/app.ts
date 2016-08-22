@@ -3,18 +3,21 @@ import { App, ionicBootstrap, Platform, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 import { GameStartPage } from './pages/GameStartPage/GameStartPage';
-import { GameService } from './services/GameService'
+import { GameService } from './services/GameService';
+import { GameValidator } from './logic/GameValidator';
+import { GameActions } from './logic/GameActions';
+import { GameState } from './logic/GameState';
 
 @Component({
     templateUrl: 'build/app.html',
-    providers: [GameService]
+    providers: [GameService, GameState, GameActions, GameValidator]
 })
 class MyApp {
     @ViewChild(Nav) nav: Nav;
 
     rootPage: any = GameStartPage;
 
-    pages: Array<{ title: string, component: any }>
+    pages: Array<{ title: string, component: any }>;
 
     constructor(private platform: Platform) {
         this.initializeApp();
