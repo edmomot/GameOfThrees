@@ -13,6 +13,9 @@ var ionic_angular_1 = require('ionic-angular');
 var ionic_native_1 = require('ionic-native');
 var GameStartPage_1 = require('./pages/GameStartPage/GameStartPage');
 var GameService_1 = require('./services/GameService');
+var GameValidator_1 = require('./logic/GameValidator');
+var GameActions_1 = require('./logic/GameActions');
+var GameState_1 = require('./logic/GameState');
 var MyApp = (function () {
     function MyApp(platform) {
         this.platform = platform;
@@ -42,7 +45,7 @@ var MyApp = (function () {
     MyApp = __decorate([
         core_1.Component({
             templateUrl: 'build/app.html',
-            providers: [GameService_1.GameService]
+            providers: [GameService_1.GameService, GameState_1.GameState, GameActions_1.GameActions, GameValidator_1.GameValidator]
         }), 
         __metadata('design:paramtypes', [ionic_angular_1.Platform])
     ], MyApp);

@@ -9,14 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var GameValidator_1 = require('./GameValidator');
 var GameActions = (function () {
     function GameActions(validator) {
         this.validator = validator;
     }
     GameActions.prototype.divideByThree = function (game) {
         if (game && this.validator.isDivisible(game)) {
-            game.current %= 3;
+            game.current /= 3;
             game.moves++;
             this.setGameWonStatus(game);
         }
@@ -44,7 +43,7 @@ var GameActions = (function () {
     };
     GameActions = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [GameValidator_1.GameValidator])
+        __metadata('design:paramtypes', [Object])
     ], GameActions);
     return GameActions;
 }());

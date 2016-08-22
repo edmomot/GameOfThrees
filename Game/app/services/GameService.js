@@ -46,7 +46,7 @@ var GameService = (function () {
     };
     GameService = __decorate([
         core_1.Component({
-            providers: [GameState_1.GameState]
+            providers: [GameState_1.GameState, GameActions_1.GameActions, GameValidator_1.GameValidator]
         }), 
         __metadata('design:paramtypes', [GameActions_1.GameActions, GameValidator_1.GameValidator, GameState_1.GameState])
     ], GameService);

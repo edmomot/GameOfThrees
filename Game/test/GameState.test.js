@@ -11,4 +11,14 @@ describe('GameState', function () {
         game.initialize(15);
         expect(game.current).toEqual(15);
     });
+    it('initializes moves correctly', function () {
+        var game = new GameState_1.GameState();
+        game.initialize(15);
+        expect(game.moves).toEqual(0);
+    });
+    it('initializes hasWon correctly', function () {
+        var game = new GameState_1.GameState();
+        game.initialize(15);
+        expect(game.hasWon).toEqual(false);
+    });
 });
