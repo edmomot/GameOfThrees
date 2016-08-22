@@ -10,35 +10,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
-var Page2 = (function () {
-    function Page2(nav, navParams) {
+var GameService_1 = require('../../services/GameService');
+var GameCompletePage_1 = require('../GameCompletePage/GameCompletePage');
+var GamePlayPage = (function () {
+    function GamePlayPage(gameService, nav, navParams) {
+        this.gameService = gameService;
         this.nav = nav;
-        // If we navigated to this page, we will have an item available as a nav param
-        this.selectedItem = navParams.get('item');
-        // Let's populate this page with some filler content for funzies
-        this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-            'american-football', 'boat', 'bluetooth', 'build'];
-        this.items = [];
-        for (var i = 1; i < 11; i++) {
-            this.items.push({
-                title: 'Item ' + i,
-                note: 'This is item #' + i,
-                icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-            });
-        }
+        this.navParams = navParams;
     }
-    Page2.prototype.itemTapped = function (event, item) {
-        // That's right, we're pushing to ourselves!
-        this.nav.push(Page2, {
-            item: item
+    GamePlayPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.start = this.navParams.get("number");
+        this.gameService.divisibilityEmitter.subscribe(function (data) {
+            return _this.divisible = data;
         });
+        this.gameService.subtractableEmitter.subscribe(function (data) {
+            return _this.subtractable = data;
+        });
+        this.gameService.currentEmitter.subscribe(function (data) {
+            return _this.current = data;
+        });
+        this.gameService.gameWonEmitter.subscribe(function (data) {
+            if (data) {
+                _this.nav.setRoot(GameCompletePage_1.GameCompletePage, { moves: 999 });
+            }
+        });
+        this.gameService.startNewGame(this.start || 589);
     };
-    Page2 = __decorate([
+    GamePlayPage = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/page2/page2.html'
+            templateUrl: 'build/pages/GamePlayPage/GamePlayPage.html'
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams])
-    ], Page2);
-    return Page2;
+        __metadata('design:paramtypes', [GameService_1.GameService, ionic_angular_1.NavController, ionic_angular_1.NavParams])
+    ], GamePlayPage);
+    return GamePlayPage;
 }());
-exports.Page2 = Page2;
+exports.GamePlayPage = GamePlayPage;

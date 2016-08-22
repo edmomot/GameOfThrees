@@ -11,17 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
 var ionic_native_1 = require('ionic-native');
-var page1_1 = require('./pages/page1/page1');
-var page2_1 = require('./pages/page2/page2');
+var GameStartPage_1 = require('./pages/GameStartPage/GameStartPage');
+var GameService_1 = require('./services/GameService');
 var MyApp = (function () {
     function MyApp(platform) {
         this.platform = platform;
-        this.rootPage = page1_1.Page1;
+        this.rootPage = GameStartPage_1.GameStartPage;
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: 'Page uno', component: page1_1.Page1 },
-            { title: 'Page dos', component: page2_1.Page2 }
+            { title: 'Start new game', component: GameStartPage_1.GameStartPage }
         ];
     }
     MyApp.prototype.initializeApp = function () {
@@ -42,7 +41,8 @@ var MyApp = (function () {
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         core_1.Component({
-            templateUrl: 'build/app.html'
+            templateUrl: 'build/app.html',
+            providers: [GameService_1.GameService]
         }), 
         __metadata('design:paramtypes', [ionic_angular_1.Platform])
     ], MyApp);

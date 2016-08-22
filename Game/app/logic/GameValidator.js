@@ -9,21 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var GameState = (function () {
-    function GameState() {
-        this.moves = 0;
-        this.hasWon = false;
+var GameValidator = (function () {
+    function GameValidator() {
     }
-    GameState.prototype.initialize = function (start) {
-        this.start = start;
-        this.current = start;
-        this.moves = 0;
-        this.hasWon = false;
+    GameValidator.prototype.isValidStartNumber = function (n) {
+        return n > 1;
     };
-    GameState = __decorate([
+    GameValidator.prototype.isDivisible = function (game) {
+        return game
+            && game.current >= 3
+            && ((game.current % 3) === 0);
+    };
+    GameValidator.prototype.isSubtractable = function (game) {
+        return game
+            && game.current > 1;
+    };
+    GameValidator = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], GameState);
-    return GameState;
+    ], GameValidator);
+    return GameValidator;
 }());
-exports.GameState = GameState;
+exports.GameValidator = GameValidator;

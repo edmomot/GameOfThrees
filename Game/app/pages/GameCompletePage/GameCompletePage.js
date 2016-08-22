@@ -10,24 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
-var GameService_1 = require('../../services/GameService');
-var GamePlayPage_1 = require('../GamePlayPage/GamePlayPage');
-var GameStartPage = (function () {
-    function GameStartPage(nav, gameService) {
+var GameStartPage_1 = require('../GameStartPage/GameStartPage');
+/*
+  Generated class for the Page3Page page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+*/
+var GameCompletePage = (function () {
+    function GameCompletePage(nav, navParams) {
         this.nav = nav;
-        this.gameService = gameService;
-        this.initialized = false;
-        this.gameWon = false;
+        this.navParams = navParams;
     }
-    GameStartPage.prototype.startGame = function (n) {
-        this.nav.setRoot(GamePlayPage_1.GamePlayPage, { number: n });
+    GameCompletePage.prototype.ngOnInit = function () {
+        this.moves = this.navParams.get("moves");
     };
-    GameStartPage = __decorate([
+    GameCompletePage.prototype.startNewGame = function () {
+        this.nav.setRoot(GameStartPage_1.GameStartPage);
+    };
+    GameCompletePage = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/GameStartPage/GameStartPage.html',
+            templateUrl: 'build/pages/GameCompletePage/GameCompletePage.html',
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController, GameService_1.GameService])
-    ], GameStartPage);
-    return GameStartPage;
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams])
+    ], GameCompletePage);
+    return GameCompletePage;
 }());
-exports.GameStartPage = GameStartPage;
+exports.GameCompletePage = GameCompletePage;

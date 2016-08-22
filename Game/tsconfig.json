@@ -6,13 +6,8 @@
     "experimentalDecorators": true
   },
   "filesGlob": [
-    "**/*.ts",
+    "app/**/*.ts",
     "!node_modules/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "typings/global",
-    "typings/global.d.ts"
   ],
   "compileOnSave": false,
   "atom": {

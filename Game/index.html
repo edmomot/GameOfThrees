@@ -15,12 +15,12 @@
         // for imports from the src folder
         System.config({
             packages: {
-                'src': { defaultExtension: 'js' }
+                'test': { defaultExtension: 'js' }
             }
         });
 
         // Import the spec file explicitly
-        System.import('src/Game.spec')
+        System.import('test/Game.spec')
 
           // wait for all imports to load ...
           // then re-execute `window.onload` which

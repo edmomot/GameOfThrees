@@ -1,5 +1,5 @@
-﻿import { IGameState } from '../../Game/app/logic/contracts/IGameState';
-import { GameState } from '../../Game/app/logic/GameState';
+﻿import { IGameState } from '../app/logic/contracts/IGameState';
+import { GameState } from '../app/logic/GameState';
 
 describe('GameState', () => {
     it('initializes start number correctly', () => {
