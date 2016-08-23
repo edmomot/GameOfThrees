@@ -41,6 +41,35 @@ function expectStateToHave(
 describe('GameActions', () => {
 
     /*
+     * general
+     */
+
+    it('should keep track of moves', () => {
+        let state: IGameState = Mocks.gameState(55, 55, 0, false);
+        let validator: IGameValidator = Mocks.gameValidator();
+
+        for (let i = 0; i < 15; i++) {
+            subtract(state);
+            add(state);
+        }
+        
+        expectStateToHave(state, 55, 55, 30, false);
+    });
+    
+    it('should not count non-action moves', () => {
+        let state: IGameState = Mocks.gameState(55, 55, 0, false);
+        let validator: IGameValidator = Mocks.gameValidator(true, false, false, false);
+
+        for (let i = 0; i < 15; i++) {
+            subtract(state, validator);
+            add(state, validator);
+            divideByThree(state, validator);
+        }
+
+        expect(state.moves).toEqual(0);
+    });
+    
+    /*
      * divideByThree
      */
 

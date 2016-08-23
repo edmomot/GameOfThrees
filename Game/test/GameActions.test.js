@@ -29,6 +29,28 @@ function expectStateToHave(state, start, current, moves, hasWon) {
 }
 describe('GameActions', function () {
     /*
+     * general
+     */
+    it('should keep track of moves', function () {
+        var state = Mocks_1.Mocks.gameState(55, 55, 0, false);
+        var validator = Mocks_1.Mocks.gameValidator();
+        for (var i = 0; i < 15; i++) {
+            subtract(state);
+            add(state);
+        }
+        expectStateToHave(state, 55, 55, 30, false);
+    });
+    it('should not count non-action moves', function () {
+        var state = Mocks_1.Mocks.gameState(55, 55, 0, false);
+        var validator = Mocks_1.Mocks.gameValidator(true, false, false, false);
+        for (var i = 0; i < 15; i++) {
+            subtract(state, validator);
+            add(state, validator);
+            divideByThree(state, validator);
+        }
+        expect(state.moves).toEqual(0);
+    });
+    /*
      * divideByThree
      */
     it('should divide 3 by 3 correctly and win', function () {

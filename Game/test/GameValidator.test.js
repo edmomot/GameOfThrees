@@ -2,6 +2,9 @@
 var GameValidator_1 = require('../app/logic/GameValidator');
 var Mocks_1 = require('./Mocks');
 describe('GameValidator', function () {
+    /*
+     * isValidStartNumber
+     */
     it('permits 2 as a start number', function () {
         var validator = new GameValidator_1.GameValidator();
         expect(validator.isValidStartNumber(2)).toBeTruthy();
@@ -30,6 +33,9 @@ describe('GameValidator', function () {
         var validator = new GameValidator_1.GameValidator();
         expect(validator.isValidStartNumber(-56921)).toBeFalsy();
     });
+    /*
+     * isDivisible
+     */
     it('does not permit an undefined IGameState on isDivisible', function () {
         var validator = new GameValidator_1.GameValidator();
         var gameState;
@@ -75,6 +81,9 @@ describe('GameValidator', function () {
         var gameState = Mocks_1.Mocks.gameState(791, 1, 0, false);
         expect(validator.isDivisible(gameState)).toBeFalsy();
     });
+    /*
+     * isSubtractable
+     */
     it('does not permit an undefined IGameState on isSubtractable', function () {
         var validator = new GameValidator_1.GameValidator();
         var gameState;
@@ -115,6 +124,9 @@ describe('GameValidator', function () {
         var gameState = Mocks_1.Mocks.gameState(15, Number.MIN_SAFE_INTEGER, 0, false);
         expect(validator.isSubtractable(gameState)).toBeFalsy();
     });
+    /*
+     * isAddable
+     */
     it('does not permit an undefined IGameState on isAddable', function () {
         var validator = new GameValidator_1.GameValidator();
         var gameState;
