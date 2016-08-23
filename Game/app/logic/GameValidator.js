@@ -16,13 +16,17 @@ var GameValidator = (function () {
         return n > 1;
     };
     GameValidator.prototype.isDivisible = function (game) {
-        return game
+        return game != undefined
             && game.current >= 3
             && ((game.current % 3) === 0);
     };
     GameValidator.prototype.isSubtractable = function (game) {
-        return game
+        return game != undefined
             && game.current > 1;
+    };
+    GameValidator.prototype.isAddable = function (game) {
+        return game != undefined
+            && game.current < Number.MAX_SAFE_INTEGER;
     };
     GameValidator = __decorate([
         core_1.Injectable(), 

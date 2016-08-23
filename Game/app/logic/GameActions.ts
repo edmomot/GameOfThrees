@@ -2,13 +2,14 @@
 
 import { IGameState } from './contracts/IGameState';
 import { IGameValidator } from './contracts/IGameValidator';
+import { GameValidator } from './GameValidator';
 
 @Injectable()
 export class GameActions {
-    constructor(private validator: IGameValidator) {}
+    constructor(private validator: GameValidator) {}
 
     divideByThree(game: IGameState): void {
-        if (game && this.validator.isDivisible(game)) {
+        if (this.validator.isDivisible(game)) {
             game.current /= 3;
             game.moves++;
             this.setGameWonStatus(game);
@@ -16,7 +17,7 @@ export class GameActions {
     }
 
     subtract(game: IGameState): void {
-        if (game && this.validator.isSubtractable(game)) {
+        if (this.validator.isSubtractable(game)) {
             game.current--;
             game.moves++;
             this.setGameWonStatus(game);
@@ -24,7 +25,7 @@ export class GameActions {
     }
 
     add(game: IGameState): void {
-        if (game) {
+        if (this.validator.isAddable(game)) {
             game.current++;
             game.moves++;
             this.setGameWonStatus(game);

@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 
-import { GameState } from './GameState';
+import { IGameState } from './contracts/IGameState';
 
 @Injectable()
 export class GameValidator {
@@ -8,14 +8,19 @@ export class GameValidator {
         return n > 1;
     }
 
-    isDivisible(game: GameState) {
-        return game
+    isDivisible(game: IGameState): boolean  {
+        return game != undefined
             && game.current >= 3
             && ((game.current % 3) === 0);
     }
 
-    isSubtractable(game: GameState) {
-        return game
+    isSubtractable(game: IGameState): boolean  {
+        return game != undefined
             && game.current > 1;
+    }
+
+    isAddable(game: IGameState): boolean {
+        return game != undefined
+            && game.current < Number.MAX_SAFE_INTEGER;
     }
 }
